@@ -1,3 +1,5 @@
+const { faAllergies } = require("@fortawesome/free-solid-svg-icons")
+
 document.addEventListener('DOMContentLoaded', () =>{
   const grid = document.querySelector('.grid')
   const doodler = document.createElement('div')
@@ -42,6 +44,9 @@ document.addEventListener('DOMContentLoaded', () =>{
     upTimeId = setInterval(function (){
       doodlerBottomSpace += 20
       doodler.style.bottom = doodlerBottomSpace + 'px'
+      if (doodlerBottomSpace > 350){
+        fall()
+      }
     },25)
   }
 
@@ -53,6 +58,13 @@ document.addEventListener('DOMContentLoaded', () =>{
         visual.style.bottom = platform.bottom + 'px'
       })
     }
+  }
+  function fall(){
+    clearInterval(upTimeId)
+    downTimeId = setInterval(function(){
+      doodlerBottomSpace -= 5
+      doodler.style.bottom = doodlerBottomSpace + 'px'
+    })
   }
 
   function start(){
